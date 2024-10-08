@@ -1,0 +1,32 @@
+name: Deploy React App to Windows 11
+
+on:
+  push:
+    branches:
+      - main # Deploy on push to the main branch
+
+jobs:
+  build:
+    runs-on: self-hosted # Use self-hosted runner
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16" # Specify Node.js version
+
+      - name: Install dependencies
+        run: npm install
+        shell: powershell # Use Windows PowerShell instead of pwsh
+
+      - name: Build the app
+        run: npm run build
+        shell: powershell # Use Windows PowerShell instead of pwsh
+
+      - name: Deploy to Local Server
+        run: |
+          # Copy the build files to your server's root directory
+        shell: powershell # Use Windows PowerShell instead of pwsh
